@@ -18,7 +18,7 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userId;
+    private Long userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;

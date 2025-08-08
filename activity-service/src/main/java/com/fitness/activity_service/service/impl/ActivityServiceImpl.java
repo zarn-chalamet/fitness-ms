@@ -7,6 +7,7 @@ import com.fitness.activity_service.mapper.ActivityMapper;
 import com.fitness.activity_service.model.Activity;
 import com.fitness.activity_service.repository.ActivityRepository;
 import com.fitness.activity_service.service.ActivityService;
+import com.fitness.activity_service.service.UserValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,21 @@ import java.util.stream.Collectors;
 public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserValidationService userValidationService;
 
     @Override
     public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(activityRequest.getUserId());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        boolean isValidUser = userValidationService.validateUser(activityRequest.getUserId());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(isValidUser);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        if (!isValidUser) {
+            throw new RuntimeException("Invalid User: "+ activityRequest.getUserId());
+        }
 
         Activity newActivity = new Activity();
         newActivity.setUserId(activityRequest.getUserId());
@@ -36,7 +49,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public List<ActivityResponse> getUserActivities(String userId) {
+    public List<ActivityResponse> getUserActivities(Long userId) {
 
         List<Activity> activities = activityRepository.findByUserId(userId);
 

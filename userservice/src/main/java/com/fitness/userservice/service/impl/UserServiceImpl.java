@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
 
         return UserMapper.userToUserDto(savedUser);
     }
+
+    @Override
+    public Boolean validateUser(Long userId) {
+        return userRepository.existsById(userId);
+    }
 }

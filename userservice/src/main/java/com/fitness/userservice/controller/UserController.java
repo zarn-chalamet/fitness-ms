@@ -29,4 +29,11 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUserByUserId(@PathVariable Long userId) {
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("this ran :" +userId);
+        return ResponseEntity.ok(userService.validateUser(userId));
+    }
+
 }

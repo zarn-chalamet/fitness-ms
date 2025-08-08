@@ -7,4 +7,6 @@ public interface UserService {
     UserResponse getUserProfileByUserId(Long userId);
 
     UserResponse registerNewUser(RegisterRequest request);
+
+    Boolean validateUser(Long userId);
 }
