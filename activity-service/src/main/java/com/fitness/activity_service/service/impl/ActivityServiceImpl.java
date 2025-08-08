@@ -27,6 +27,7 @@ public class ActivityServiceImpl implements ActivityService {
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(activityRequest.getUserId());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//        userValidationService.validateUserWithRestClient(activityRequest.getUserId());
         boolean isValidUser = userValidationService.validateUser(activityRequest.getUserId());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(isValidUser);
