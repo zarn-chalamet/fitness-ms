@@ -42,3 +42,10 @@ gemini:
   api:
     url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
     key: AIzaSyAwmr0aNV-eE9ecsf3R-kooj_Q5-aRxY3E
+
+#OpenAPI
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

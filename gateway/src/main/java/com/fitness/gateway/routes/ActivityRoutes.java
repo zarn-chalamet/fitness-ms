@@ -8,6 +8,8 @@ import org.springframework.web.servlet.function.RequestPredicates;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
 
+import static org.springframework.cloud.gateway.server.mvc.filter.FilterFunctions.setPath;
+
 @Configuration
 public class ActivityRoutes {
 
@@ -16,6 +18,15 @@ public class ActivityRoutes {
         return GatewayRouterFunctions.route("activity-service")
                 .route(RequestPredicates.path("/api/activities/**"),
                         HandlerFunctions.http("http://localhost:8081"))
+                .build();
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> activityServiceOpenApiDocs() {
+        return GatewayRouterFunctions.route("activity-service-api-doc")
+                .route(RequestPredicates.path("/docs/activityservice/v3/api-docs"),
+                        HandlerFunctions.http("http://localhost:8081"))
+                .filter(setPath("/v3/api-docs"))
                 .build();
     }
 }
