@@ -31,7 +31,7 @@ public class ActivityController {
     }
 
     @GetMapping("/{activityId}")
-    public ResponseEntity<ActivityResponse> getActivityById(@PathVariable Long activityId) {
+    public ResponseEntity<ActivityResponse> getActivityById(@PathVariable String activityId) {
         ActivityResponse activityResponse = activityService.getActivityById(activityId);
 
         return ResponseEntity.ok(activityResponse);

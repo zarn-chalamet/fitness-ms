@@ -82,7 +82,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public ActivityResponse getActivityById(Long activityId) {
+    public ActivityResponse getActivityById(String activityId) {
         Activity activity = activityRepository.findById(activityId)
                 .orElseThrow(()-> new ActivityNotFoundException("Activity not found with ID: " + activityId));
         return ActivityMapper.toActivityDto(activity);

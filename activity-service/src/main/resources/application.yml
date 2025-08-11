@@ -2,16 +2,20 @@ spring:
   application:
     name: activity-service
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/activity_database
-    username: root
-    password: 202988
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    mongodb:
+      uri: mongodb+srv://zarnholland:zarn1234@cluster0.dzkb3.mongodb.net/fitness-ms?retryWrites=true&w=majority&appName=Cluster0
+
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/activity_database
+#    username: root
+#    password: 202988
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect
   rabbitmq:
     host: localhost
     port: 5672

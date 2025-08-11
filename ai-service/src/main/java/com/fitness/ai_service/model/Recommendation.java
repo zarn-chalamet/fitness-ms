@@ -1,19 +1,16 @@
 package com.fitness.ai_service.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "recommendations")
+@Document(collection = "recommendations")
 @Data
 public class Recommendation {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long activityId;
     private Long userId;
@@ -23,6 +20,6 @@ public class Recommendation {
     private List<String> suggestions;
     private List<String> safety;
 
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 }

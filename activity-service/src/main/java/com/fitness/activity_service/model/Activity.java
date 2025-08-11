@@ -1,35 +1,30 @@
 package com.fitness.activity_service.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.type.SqlTypes;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Entity
-@Table(name = "activities")
+@Document(collection = "activities")
 @Data
 public class Activity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private Long userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(columnDefinition = "json")
     private Map<String, Object> additionalMetrics;
 
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 }

@@ -10,5 +10,5 @@ public interface ActivityService {
 
     List<ActivityResponse> getUserActivities(Long userId);
 
-    ActivityResponse getActivityById(Long activityId);
+    ActivityResponse getActivityById(String activityId);
 }

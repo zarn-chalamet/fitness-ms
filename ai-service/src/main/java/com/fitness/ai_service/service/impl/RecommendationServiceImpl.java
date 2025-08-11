@@ -21,7 +21,7 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    public Recommendation getRecommendationByActivityId(Long activityId) {
+    public Recommendation getRecommendationByActivityId(String activityId) {
         return recommendationRepository.findByActivityId(activityId)
                 .orElseThrow(()-> new RecommendationNotFoundException("Recommendation Not Found with activity ID: "+ activityId));
 
