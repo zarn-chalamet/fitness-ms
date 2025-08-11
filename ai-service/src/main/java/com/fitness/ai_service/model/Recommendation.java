@@ -11,8 +11,8 @@ import java.util.List;
 @Data
 public class Recommendation {
 
-    private Long id;
-    private Long activityId;
+    private String id;
+    private String activityId;
     private Long userId;
     private String activityType;
     private String recommendation;
