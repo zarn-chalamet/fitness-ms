@@ -37,12 +37,12 @@ public class ActivityServiceImpl implements ActivityService {
     private String routingKey;
 
     @Override
-    public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+    public ActivityResponse trackActivity(ActivityRequest activityRequest,String userId) {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(activityRequest.getUserId());
+        System.out.println(userId);
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-        boolean isValidUser = userValidationService.validateUserWithRestClient(activityRequest.getUserId());
+        boolean isValidUser = userValidationService.validateUserWithRestClient(userId);
 //        boolean isValidUser = userValidationService.validateUser(activityRequest.getUserId());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(isValidUser);
@@ -52,7 +52,7 @@ public class ActivityServiceImpl implements ActivityService {
         }
 
         Activity newActivity = new Activity();
-        newActivity.setUserId(activityRequest.getUserId());
+        newActivity.setUserId(userId);
         newActivity.setType(activityRequest.getType());
         newActivity.setDuration(activityRequest.getDuration());
         newActivity.setCaloriesBurned(activityRequest.getCaloriesBurned());

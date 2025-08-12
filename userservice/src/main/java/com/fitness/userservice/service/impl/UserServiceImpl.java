@@ -50,6 +50,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean validateUser(String keycloakId) {
+//        User user = userRepository.findByKeycloakId(keycloakId);
+//        if(user != null) {
+//            return true;
+//        }
+//        return false;
         return userRepository.existsByKeycloakId(keycloakId);
     }
 }
