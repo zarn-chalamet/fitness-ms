@@ -16,7 +16,7 @@ public class RecommendationServiceImpl implements RecommendationService {
     private final RecommendationRepository recommendationRepository;
 
     @Override
-    public List<Recommendation> getUserRecommendations(Long userId) {
+    public List<Recommendation> getUserRecommendations(String userId) {
         return recommendationRepository.findByUserId(userId);
     }
 

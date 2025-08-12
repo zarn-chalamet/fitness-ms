@@ -13,6 +13,7 @@ public class UserMapper {
         userResponse.setId(user.getId());
         userResponse.setEmail(user.getEmail());
         //encode password here
+        userResponse.setKeycloakId(user.getKeycloakId());
         userResponse.setPassword(user.getPassword());
         userResponse.setFirstName(user.getFirstName());
         userResponse.setLastName(user.getLastName());

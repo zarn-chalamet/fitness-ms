@@ -19,7 +19,7 @@ public class RecommendationController {
     private final RecommendationService recommendationService;
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Recommendation>> getUserRecommendations(@PathVariable Long userId) {
+    public ResponseEntity<List<Recommendation>> getUserRecommendations(@PathVariable String userId) {
         List<Recommendation> recommendations = recommendationService.getUserRecommendations(userId);
 
         return ResponseEntity.ok(recommendations);

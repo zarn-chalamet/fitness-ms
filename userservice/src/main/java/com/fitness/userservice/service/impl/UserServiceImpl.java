@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserResponse getUserProfileByUserId(Long userId) {
+    public UserResponse getUserProfileByUserId(String userId) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
@@ -29,13 +29,16 @@ public class UserServiceImpl implements UserService {
     public UserResponse registerNewUser(RegisterRequest request) {
 
         //check user is already register or not
-        User isEmailAlreadyRegistered = userRepository.findByEmail(request.getEmail());
-        if(isEmailAlreadyRegistered != null){
-            throw new RuntimeException("Email already registered");
+        if(userRepository.existsByEmail(request.getEmail())) {
+
+            User existingUser = userRepository.findByEmail(request.getEmail());
+
+            return UserMapper.userToUserDto(existingUser);
         }
 
         User newUser = new User();
         newUser.setEmail(request.getEmail());
+        newUser.setKeycloakId(request.getKeycloakId());
         newUser.setPassword(request.getPassword());
         newUser.setFirstName(request.getFirstName());
         newUser.setLastName(request.getLastName());
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean validateUser(Long userId) {
-        return userRepository.existsById(userId);
+    public Boolean validateUser(String keycloakId) {
+        return userRepository.existsByKeycloakId(keycloakId);
     }
 }

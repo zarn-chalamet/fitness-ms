@@ -16,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserResponse> getUserProfile(@PathVariable("userId") Long userId) {
+    public ResponseEntity<UserResponse> getUserProfile(@PathVariable("userId") String userId) {
         UserResponse userResponse = userService.getUserProfileByUserId(userId);
 
         return ResponseEntity.ok(userResponse);
@@ -29,11 +29,11 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
     }
 
-    @GetMapping("/{userId}/validate")
-    public ResponseEntity<Boolean> validateUserByUserId(@PathVariable Long userId) {
+    @GetMapping("/{keycloakId}/validate")
+    public ResponseEntity<Boolean> validateUserByUserId(@PathVariable String keycloakId) {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("this ran :" +userId);
-        return ResponseEntity.ok(userService.validateUser(userId));
+        System.out.println("this ran :" +keycloakId);
+        return ResponseEntity.ok(userService.validateUser(keycloakId));
     }
 
 }

@@ -1,6 +1,11 @@
 spring:
   application:
     name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/fitness-ms
 
   config:
     import: optional:configserver:http://config-server
@@ -10,6 +15,7 @@ spring.cloud:
     discovery:
       enabled: true
       service-id: config-server
+
 
 server:
   port: 8080

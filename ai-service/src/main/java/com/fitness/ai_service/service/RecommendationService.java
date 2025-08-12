@@ -5,7 +5,7 @@ import com.fitness.ai_service.model.Recommendation;
 import java.util.List;
 
 public interface RecommendationService {
-    List<Recommendation> getUserRecommendations(Long userId);
+    List<Recommendation> getUserRecommendations(String userId);
 
     Recommendation getRecommendationByActivityId(String activityId);
 }
