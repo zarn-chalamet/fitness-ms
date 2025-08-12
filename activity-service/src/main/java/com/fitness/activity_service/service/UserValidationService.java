@@ -20,7 +20,7 @@ public class UserValidationService {
     private final DiscoveryClient discoveryClient;
 
     //example using restClient
-    public boolean validateUserWithRestClient(Long userId) {
+    public boolean validateUserWithRestClient(String userId) {
         RestTemplate restTemplate = new RestTemplate();
         List<ServiceInstance> instances = discoveryClient.getInstances("user-service");
         URI uri = instances.get(0).getUri();
