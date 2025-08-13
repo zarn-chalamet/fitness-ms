@@ -9,8 +9,9 @@ import {
   FormControl,
   Typography,
   Paper,
+  Divider,
 } from '@mui/material';
-import {addActivity} from "../services/api"
+import { addActivity } from "../services/api";
 
 const ActivityForm = ({ onActivityAdded }) => {
   const [activity, setActivity] = useState({
@@ -26,7 +27,6 @@ const ActivityForm = ({ onActivityAdded }) => {
     },
   });
 
-  // Handle top-level fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setActivity((prev) => ({
@@ -35,7 +35,6 @@ const ActivityForm = ({ onActivityAdded }) => {
     }));
   };
 
-  // Handle additionalMetrics fields
   const handleAdditionalChange = (e) => {
     const { name, value } = e.target;
     setActivity((prev) => ({
@@ -49,8 +48,6 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Convert number fields
     const finalData = {
       ...activity,
       duration: Number(activity.duration),
@@ -82,102 +79,135 @@ const ActivityForm = ({ onActivityAdded }) => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 3, maxWidth: 500, mx: 'auto', mt: 4 }}>
-      <Typography variant="h5" mb={2}>
+    <Paper
+      elevation={6}
+      sx={{
+        p: 4,
+        maxWidth: 600,
+        mx: 'auto',
+        mt: 6,
+        borderRadius: 3,
+        background: 'linear-gradient(145deg, #f9f9f9, #e0e0e0)',
+      }}
+    >
+      <Typography
+        variant="h4"
+        mb={3}
+        align="center"
+        sx={{ fontWeight: 'bold', color: '#1976d2' }}
+      >
         Log New Activity
       </Typography>
+
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
+          gap: 3,
         }}
       >
-        {/* Activity Type */}
-        <FormControl fullWidth>
-          <InputLabel>Activity Type</InputLabel>
-          <Select
-            name="type"
-            value={activity.type}
-            label="Activity Type"
+        {/* Activity Info */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel>Activity Type</InputLabel>
+            <Select
+              name="type"
+              value={activity.type}
+              label="Activity Type"
+              onChange={handleChange}
+            >
+              <MenuItem value="RUNNING">Running</MenuItem>
+              <MenuItem value="CYCLING">Cycling</MenuItem>
+              <MenuItem value="SWIMMING">Swimming</MenuItem>
+              <MenuItem value="WALKING">Walking</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField
+            label="Duration (minutes)"
+            name="duration"
+            type="number"
+            value={activity.duration}
             onChange={handleChange}
-          >
-            <MenuItem value="RUNNING">Running</MenuItem>
-            <MenuItem value="CYCLING">Cycling</MenuItem>
-            <MenuItem value="SWIMMING">Swimming</MenuItem>
-            <MenuItem value="WALKING">Walking</MenuItem>
-          </Select>
-        </FormControl>
+            fullWidth
+            sx={{ '& input': { color: '#333' } }}
+          />
 
-        {/* Duration */}
-        <TextField
-          label="Duration (minutes)"
-          name="duration"
-          type="number"
-          value={activity.duration}
-          onChange={handleChange}
-          fullWidth
-        />
+          <TextField
+            label="Calories Burned"
+            name="caloriesBurned"
+            type="number"
+            value={activity.caloriesBurned}
+            onChange={handleChange}
+            fullWidth
+            sx={{ '& input': { color: '#333' } }}
+          />
 
-        {/* Calories */}
-        <TextField
-          label="Calories Burned"
-          name="caloriesBurned"
-          type="number"
-          value={activity.caloriesBurned}
-          onChange={handleChange}
-          fullWidth
-        />
+          <TextField
+            label="Start Time"
+            name="startTime"
+            type="datetime-local"
+            value={activity.startTime}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+          />
+        </Box>
 
-        {/* Start Time */}
-        <TextField
-          label="Start Time"
-          name="startTime"
-          type="datetime-local"
-          value={activity.startTime}
-          onChange={handleChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          fullWidth
-        />
+        <Divider sx={{ my: 2 }} />
 
         {/* Additional Metrics */}
-        <Typography variant="subtitle1" mt={1}>
+        <Typography
+          variant="h6"
+          mb={1}
+          sx={{ fontWeight: 500, color: '#1976d2' }}
+        >
           Additional Metrics
         </Typography>
-        <TextField
-          label="Distance (km)"
-          name="distance"
-          type="number"
-          value={activity.additionalMetrics.distance}
-          onChange={handleAdditionalChange}
-          fullWidth
-        />
-        <TextField
-          label="Average Speed (km/h)"
-          name="averageSpeed"
-          type="number"
-          value={activity.additionalMetrics.averageSpeed}
-          onChange={handleAdditionalChange}
-          fullWidth
-        />
-        <TextField
-          label="Max Heart Rate (bpm)"
-          name="maxHeartRate"
-          type="number"
-          value={activity.additionalMetrics.maxHeartRate}
-          onChange={handleAdditionalChange}
-          fullWidth
-        />
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <TextField
+            label="Distance (km)"
+            name="distance"
+            type="number"
+            value={activity.additionalMetrics.distance}
+            onChange={handleAdditionalChange}
+            fullWidth
+          />
+          <TextField
+            label="Average Speed (km/h)"
+            name="averageSpeed"
+            type="number"
+            value={activity.additionalMetrics.averageSpeed}
+            onChange={handleAdditionalChange}
+            fullWidth
+          />
+          <TextField
+            label="Max Heart Rate (bpm)"
+            name="maxHeartRate"
+            type="number"
+            value={activity.additionalMetrics.maxHeartRate}
+            onChange={handleAdditionalChange}
+            fullWidth
+          />
+        </Box>
 
         <Button
           type="submit"
           variant="contained"
-          color="primary"
-          sx={{ mt: 1 }}
+          sx={{
+            mt: 3,
+            py: 1.5,
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            backgroundColor: '#1976d2',
+            '&:hover': {
+              backgroundColor: '#115293',
+            },
+          }}
         >
           Add Activity
         </Button>

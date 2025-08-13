@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse getUserProfileByUserId(String userId) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+        User user = userRepository.findByKeycloakId(userId);
 
         return UserMapper.userToUserDto(user);
     }

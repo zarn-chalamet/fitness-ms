@@ -18,7 +18,7 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-
+export const getUserData = () => api.get(`/users`);
 export const getActivities = () => api.get("/activities");
 
 export const addActivity = (activity) => api.post("/activities", activity);

@@ -5,6 +5,8 @@ export const authConfig = {
   tokenEndpoint:
     "http://localhost:8181/realms/fitness-ms/protocol/openid-connect/token",
   redirectUri: "http://localhost:5173",
+  logoutEndpoint:
+    "http://localhost:8181/realms/fitness-ms/protocol/openid-connect/logout",
   scope: "openid profile email offline_access",
   onRefreshTokenExpire: (event) => event.logIn(),
 };
