@@ -1,43 +1,37 @@
-🏋️‍♂️ AI-Powered Fitness Analysis & Recommendation Platform 🤖
+# 🏋️‍♂️ AI-Powered Fitness Analysis & Recommendation Platform 🤖
 
-A Java Spring Boot microservices application that analyzes user activity data and generates personalized fitness improvement recommendations using Google Gemini AI API.
+A **Java Spring Boot microservices** application that analyzes user activity data and generates **personalized fitness improvement recommendations** using the **Google Gemini AI API**.
 
-The system is built with a modern microservices architecture, using:
+Built with a **modern microservices architecture** for scalability, security, and maintainability.
 
-  Eureka → Service discovery
-  
-  Spring Cloud Config Server → Centralized configuration
-  
-  API Gateway → Request routing & load balancing
-  
-  Keycloak → Authentication & authorization
-  
-  RabbitMQ → Asynchronous messaging between services
+---
 
-        
-📌 Features
+## 🚀 Architecture Overview
 
-✅ User Authentication & Authorization – Secure login & role-based access via Keycloak
+**Microservices Components**
+- **Eureka** → Service discovery
+- **Spring Cloud Config Server** → Centralized configuration management
+- **API Gateway** → Request routing & load balancing
+- **Keycloak** → Authentication & authorization
+- **RabbitMQ** → Asynchronous messaging between services
 
-✅ User Synchronization – User profiles are synced between user-service and Keycloak
+---
 
-✅ Activity Tracking – Log activities like running, cycling, or gym workouts
+## 📌 Features
 
-✅ Asynchronous Messaging – activity-service publishes activity data to RabbitMQ, consumed by ai-service
+✅ **User Authentication & Authorization** – Secure login & role-based access via Keycloak  
+✅ **User Synchronization** – Syncs user profiles between `user-service` and Keycloak  
+✅ **Activity Tracking** – Log running, cycling, gym workouts, and more  
+✅ **Asynchronous Messaging** – `activity-service` publishes activity data to RabbitMQ, consumed by `ai-service`  
+✅ **AI-Driven Analysis** – Google Gemini API generates personalized improvement tips  
+✅ **Service Discovery** – Eureka Server dynamically registers all services  
+✅ **Centralized Configuration** – Managed via Spring Cloud Config Server  
+✅ **API Gateway** – Single secure entry point for all client requests  
+✅ **Database per Service** – Follows microservices best practices (MySQL, MongoDB)  
 
-✅ AI-Driven Analysis – Uses Google Gemini API to generate personalized improvement recommendations
+---
 
-✅ Service Discovery – Eureka Server dynamically registers all services
-
-✅ Centralized Configuration – Managed through Spring Cloud Config Server
-
-✅ API Gateway – Single entry point for all client requests
-
-✅ Database per Service – Following microservices best practices
-
-
-
-🛠 Tech Stack
+## 🛠 Tech Stack
 
 | Category              | Technology                         |
 | --------------------- | ---------------------------------- |
@@ -52,40 +46,53 @@ The system is built with a modern microservices architecture, using:
 | **Build Tool**        | Maven                              |
 | **Containerization**  | Docker & Docker Compose            |
 
+---
 
-
-
-📂 Microservices
+## 📂 Microservices
 
 | Service              | Description                                                   |
 | -------------------- | ------------------------------------------------------------- |
 | **user-service**     | Manages user profiles & syncs with Keycloak                   |
 | **activity-service** | Logs activities & publishes events to RabbitMQ                |
-| **ai-service**       | Consumes messages, connects to Google Gemini API for analysis |
+| **ai-service**       | Consumes messages, calls Google Gemini API for analysis       |
 | **eureka-server**    | Service discovery registry                                    |
 | **config-server**    | Centralized configuration for all microservices               |
 | **api-gateway**      | Routes requests & integrates Keycloak security                |
 
+---
 
-
-🖥 System Architecture
-
+## 🖥 System Architecture
 
 <img width="904" height="736" alt="fitness-ms drawio" src="https://github.com/user-attachments/assets/89dee6a4-9696-4595-b056-dff2ea916c64" />
 
+---
 
+## ⚡ How It Works
 
-⚡ How It Works
+1. **User Authentication**
+   - User logs in via **Keycloak** through the **API Gateway**
+   - User profile is stored in `user-service` and synced with Keycloak
 
-User logs in via Keycloak through the API Gateway.
+2. **Activity Logging**
+   - User submits activity data (e.g., running, cycling, gym workouts)
+   - `activity-service` stores the data and publishes an event to **RabbitMQ** (asynchronous messaging)
 
-User profile is stored in user-service and synced with Keycloak.
+3. **AI Analysis**
+   - `ai-service` consumes the event from RabbitMQ
+   - Calls **Google Gemini API** for personalized improvement recommendations
+   - Stores recommendations in the database
 
-User submits activity to activity-service.
+4. **User Feedback**
+   - Recommendations are returned to the user via the **API Gateway**
 
-activity-service publishes the activity event to RabbitMQ (asynchronous).
+---
 
-ai-service consumes the message, calls Google Gemini API, and generates a personalized analysis.
+## 🔮 Future Enhancements
+- Mobile application integration
+- Real-time activity tracking via wearables
+- Advanced analytics dashboard with progress tracking
+- Multi-language AI recommendations
 
-AI recommendations are stored & returned to the user via API Gateway.
+---
 
+**👨‍💻 Author:** [ZarnChalamet](https://github.com/zarn-chalamet)
